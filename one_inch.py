@@ -14,7 +14,6 @@ from util import open_json
 ERC20_ABI = open_json("abi/ERC20.json")
 ONE_INCH_ABI = open_json("abi/AggregationRouterV5.json")
 ONE_INCH_ROUTER = "0x1111111254fb6c44bAC0beD2854e76F90643097d"
-REFERRAL = "0xdb5D4e46AeE4Eb45768460abeEb03b6fB813819d"
 
 NATIVE_TOKEN = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
 
@@ -153,7 +152,7 @@ class OneInch:
                 exit()
 
         fee = min(max(0.2, slippage * 0.1), 3.0)
-        url = f"https://api.1inch.io/v4.0/{self.chain_id}/swap?fromAddress={self.account.address}&fromTokenAddress={from_token_address}&toTokenAddress={to_token_address}&amount={amount}&slippage={slippage}&complexityLevel=3&fee={fee}&referrerAddress={REFERRAL}"
+        url = f"https://api.1inch.io/v4.0/{self.chain_id}/swap?fromAddress={self.account.address}&fromTokenAddress={from_token_address}&toTokenAddress={to_token_address}&amount={amount}&slippage={slippage}&complexityLevel=3&fee={fee}"
         response = requests.get(url=url).json()
 
         return response
